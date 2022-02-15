@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
+import org.thibaut.thelibrary.loanchecker.batch.controller.JobInvokerController;
 import org.thibaut.thelibrary.loanchecker.dto.SimpleMailMessageDTO;
 
 import java.util.List;
@@ -12,7 +13,6 @@ import java.util.List;
 import static org.thibaut.thelibrary.loanchecker.broker.BrokerConfig.*;
 
 @Component
-@NoArgsConstructor
 @AllArgsConstructor
 public class Writer implements ItemWriter<List<SimpleMailMessageDTO> > {
 
@@ -24,5 +24,6 @@ public class Writer implements ItemWriter<List<SimpleMailMessageDTO> > {
 		for ( SimpleMailMessageDTO messageDTO: list.get( 0 ) ) {
 			amqpTemplate.convertAndSend( TOPIC_EXCHANGE_NAME,ROUTING_KEY, messageDTO );
 		}
+		JobInvokerController.jobFinished = true;
 	}
 }

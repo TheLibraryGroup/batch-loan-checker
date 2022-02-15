@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service;
 import org.thibaut.thelibrary.loanchecker.dto.BookDTO;
 
 @Service
-//@Qualifier(value = "BookServiceFallback")
-public class BookServiceFallback implements BookService {
+public class BookFeignClientFallback implements BookFeignClient {
 
 	@Override
 	public BookDTO findById( @NonNull Long id ) {

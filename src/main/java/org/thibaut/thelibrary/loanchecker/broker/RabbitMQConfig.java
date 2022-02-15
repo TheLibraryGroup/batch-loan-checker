@@ -14,7 +14,7 @@ import static org.thibaut.thelibrary.loanchecker.broker.BrokerConfig.*;
 public class RabbitMQConfig {
 	@Bean
 	Queue queue() {
-		return new Queue( QUEUE_NAME, false);
+		return new Queue( QUEUE_LOAN_OVERDUE, false);
 	}
 
 	@Bean
@@ -24,7 +24,7 @@ public class RabbitMQConfig {
 
 	@Bean
 	Binding binding( Queue queue, TopicExchange exchange) {
-		return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
+		return BindingBuilder.bind(queue()).to(exchange).with(ROUTING_KEY);
 	}
 
 	@Bean

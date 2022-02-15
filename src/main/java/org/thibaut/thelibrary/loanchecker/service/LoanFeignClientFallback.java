@@ -7,7 +7,7 @@ import org.thibaut.thelibrary.loanchecker.dto.LoanDTO;
 import java.util.List;
 
 @Service
-public class LoanServiceFallback implements LoanService{
+public class LoanFeignClientFallback implements LoanFeignClient {
 
 	@Override
 	public List< LoanDTO > findAll( ) {
